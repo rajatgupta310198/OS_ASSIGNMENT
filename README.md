@@ -1,2 +1,2 @@
-# OS_ASSIGNMENT
+# OS ASSIGNMENT
 Operating System course assignment
