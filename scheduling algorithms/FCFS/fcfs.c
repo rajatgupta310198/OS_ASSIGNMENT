@@ -13,7 +13,7 @@ int main()
 		{
 			pcb.pid = i+1;
 			pcb.in_time = i;
-			printf("\nEnter in burst time :");
+			printf("\nEnter burst time :");
 			float t;
 			scanf("%f",&t);
 			pcb.burst = t;
