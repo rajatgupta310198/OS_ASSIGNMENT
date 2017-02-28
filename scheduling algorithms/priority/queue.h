@@ -1,6 +1,6 @@
 /*
 
-Implement Priority Scheduling Non-preemtive version
+Implementation of Priority Scheduling, Non-preemtive version
 
 */
 
