@@ -13,13 +13,9 @@ int main()
 	for(i=0;i<n;i++)
 		{
 			pcb.pid = i+1;
-			pcb.in_time = i;
-			printf("\nEnter in burst time :");
-			scanf("%f",&t);
-			printf("\nEnter in prority :");
-			scanf("%d",&pri);
-			pcb.burst = t;
-			pcb.priority = pri;
+			pcb.in_time = rand()%100;
+			pcb.burst =  10 - (float)rand()/RAND_MAX;
+			pcb.priority = 1+rand()%4;
 			enq(&readyq,pcb);
 		}
  	printf("\n");
