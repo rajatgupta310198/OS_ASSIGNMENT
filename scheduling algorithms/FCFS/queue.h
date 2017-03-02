@@ -26,12 +26,12 @@ void enq(struct queue *q, struct PCB pcb)
 	t->next  = NULL;
 	q->no_of_process +=1; 
 	if(q->rear==NULL)
-	{   t->pcb.wait_time = 0;
+	{   
 		q->front = t;
 		q->rear = t;
 	}
 	else
-	{   t->pcb.wait_time = q->rear->pcb.burst + q->rear->pcb.wait_time;
+	{   
 		q->rear->next = t;
 		q->rear = t;
 	}
@@ -50,8 +50,39 @@ void deq(struct queue *q)
 	}
   	// deq oeration
 }
+void sort(struct queue *q)
+{
+	int i,j;
+	struct node *t = q->front;
+	while(t->next!=NULL)
+	{
+		struct node *t2 = t->next;
+		while(t2)
+		{
+			if(t->pcb.in_time>t2->pcb.in_time)
+			{
+				struct PCB temp_pcb = t->pcb;
+				t->pcb = t2->pcb;
+				t2->pcb = temp_pcb;
+
+			}
+			t2 = t2->next;
+		}
+		t =t->next;
+	}
+	q->front->pcb.wait_time = 0;
+	struct node *temp1 = q->front->next;
+	struct node *temp2 = q->front;
+	while(temp1)
+	{
+		temp1->pcb.wait_time = temp2->pcb.burst + temp2->pcb.wait_time;
+		temp1=temp1->next;
+		temp2 = temp2->next;
+	}
+}
 void traverse(struct queue *q)
-{	struct node * t = q->front;
+{	sort(q);
+	struct node * t = q->front;
 	printf("PID\tIn Time\tBurst Time\tWait Time\tTurn Around Time\n");
 	float avg_wait = 0;
 
